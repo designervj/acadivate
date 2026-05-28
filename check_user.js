@@ -8,7 +8,7 @@ async function checkUser() {
     await client.connect();
     const db = client.db('kalp_tenant_acadivate');
     const users = db.collection('users');
-    const email = 'vijendrachoudhary3344@gmail.com';
+    const email = 'test@example.com';
     
     console.log('Searching for email:', email);
     

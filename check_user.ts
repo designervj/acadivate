@@ -4,7 +4,7 @@ async function checkUser() {
   const client = await clientPromise;
   const db = client.db('kalp_tenant_acadivate');
   const users = db.collection('users');
-  const email = 'vijendrachoudhary3344@gmail.com';
+  const email = 'test@example.com';
   
   const user = await users.findOne({ 
     $or: [
