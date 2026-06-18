@@ -1,12 +1,8 @@
 import clientPromise from "@/src/lib/mongodb";
-import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import Razorpay from "razorpay";
 
-let instance = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+export const dynamic = "force-dynamic";
 
 async function getCollection(collname: string) {
   const client = await clientPromise;
@@ -14,8 +10,11 @@ async function getCollection(collname: string) {
   return db.collection(collname);
 }
 
-function getObjectId(id: string) {
-  return ObjectId.isValid(id) ? new ObjectId(id) : null;
+function getRazorpayInstance() {
+  return new Razorpay({
+    key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  });
 }
 
 export async function POST(req: NextRequest) {
@@ -36,22 +35,7 @@ export async function POST(req: NextRequest) {
       website,
       totalAmount,
     } = await req.json();
-    console.log(
-      address,
-      agreeTerms,
-      city,
-      email,
-      gstin,
-      mobile,
-      orgName,
-      ownership,
-      paymentMode,
-      promoter,
-      selectedCategories,
-      state,
-      website,
-      totalAmount,
-    );
+    const instance = getRazorpayInstance();
     const ordersCollection = await getCollection("orders");
     const findLastReceipt = await ordersCollection.countDocuments();
     const lastReceipt = findLastReceipt + 1;
