@@ -148,6 +148,7 @@ const ShowNominationtable = () => {
                                 <th className="px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-text-subtle">Contact</th>
                                 <th className="px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-text-subtle">Location</th>
                                 <th className="px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-text-subtle text-right">Status</th>
+                                <th className="px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-text-subtle">Submitted On</th>
                                 <th className="px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-text-subtle text-center">Actions</th>
                             </tr>
                         </thead>
@@ -246,6 +247,9 @@ const ShowNominationtable = () => {
                                                     {nomination.status || 'New'}
                                                 </span>
                                             )}
+                                        </td>
+                                        <td className="px-6 py-4 text-xs text-text-muted whitespace-nowrap">
+                                            {nomination.createdAt ? new Date(nomination.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A'}
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="flex items-center justify-center gap-2">
