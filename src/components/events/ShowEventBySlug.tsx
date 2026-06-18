@@ -25,7 +25,7 @@ import { Button } from "@/src/components/ui/Button";
 import { useParams, usePathname } from "next/navigation";
 import { formatEventDate, resolveImage } from "./util/util";
 import GetEventBySlug from './GetEventBySlug'
-import { fetchAwardCategoriesThunk, fetchAwardCategoryThunk } from '@/src/hook/awardCategories/awardCategoryThunk'
+import {  fetchAwardCategoryThunk } from '@/src/hook/awardCategories/awardCategoryThunk'
 const ShowEventBySlug = () => {
   const dispatch = useDispatch<AppDispatch>()
   const pathName = usePathname()
